@@ -25,7 +25,7 @@ USBSTOR, ShellBags, UserAssist, BAM/DAM y canales EVTX).
 Requisitos de Entorno:
 
 - Ejecutable en Debian GNU/Linux (Python 3.10+) y Windows.
-- Dependencias: lib-xml2evtx, regipy
+- Dependencias: xml2evtx, regipy
 - Puede Emplear estructuras binarias nativas robustas compatibles con herramientas periciales como hivexsh, RegRipper y evtx_dump.
 
 ## Aviso legal y descargo de responsabilidad
@@ -44,3 +44,15 @@ El autor y los colaboradores de ForensicSuite no se hacen responsables del uso i
 - Acceder, examinar o extraer información de dispositivos sin autorización del titular.
 - Utilizar la herramienta para ocultar, alterar, destruir o manipular evidencia digital.
 - Cualquier actividad que vulnere la legislación vigente, incluyendo la Ley Especial contra Delitos Informáticos de Venezuela y el Código Orgánico Procesal Penal.
+
+## Dependencias
+
+### xml2evtx
+
+---
+
+Author: JPCERTCC
+Contact: [info@jpcert.or.jp](info@jpcert.or.jp)
+[Repositorio de github](https://github.com/JPCERTCC/xml2evtx/tree/main)
+
+---

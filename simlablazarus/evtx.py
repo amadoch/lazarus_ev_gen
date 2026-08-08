@@ -617,7 +617,7 @@ def create_event_record(data: bytes, count: int) -> bytes:
     return event_record + data + pack("I", len(data) + 0x20) # Add a copy of the size to the end
 
 
-def process_xml_data(xml_data: str) -> tuple:
+def process_xml_data(xml_data: str) -> tuple[bytes, int, int]:
     """
     Process the given test data and return the total event count and BinXML data.
 
@@ -629,17 +629,25 @@ def process_xml_data(xml_data: str) -> tuple:
     """
 
     total_event_count = 0
+    total_chunk_count = 0
     binxml = b""
     evtx_chunk = b""
     for node, err in load_test_data(xml_data):
         if err is not None:
             continue
         total_event_count += 1
-        binxml += convert_xml_to_binxml(node, total_event_count)  # Convert XML to BinXML
+        part_of_binxml = convert_xml_to_binxml(node, total_event_count) # Convert XML to BinXML
+        if len(binxml + part_of_binxml) > MAX_CHUNK_SIZE - 0x200: # with out chunk header size 0x200
+            evtx_chunk += create_chunk(binxml, total_event_count, total_chunk_count)
+
+            binxml = part_of_binxml
+            total_chunk_count += 1
+        else:
+            binxml += part_of_binxml 
 
     evtx_chunk += create_chunk(binxml, total_event_count, 0)
 
-    return total_event_count, 0, evtx_chunk
+    return evtx_chunk, total_event_count, total_chunk_count
 
 
 def leer_evento_xml(nombre_xml, directorio):
@@ -647,25 +655,25 @@ def leer_evento_xml(nombre_xml, directorio):
 
     content = ruta_archivo.read_text()
 
-    event_count, chunk_count, evtx_chunk = process_xml_data(content)
+    evtx_chunk, event_count, chunk_count = process_xml_data(content)
 
     return evtx_chunk, event_count, chunk_count    
 
-def generar_archivo_evtx(nombre_evtx, directorio, data, chunk_count, event_count):
+def generar_archivo_evtx(nombre: str, destino: str, data: tuple[bytes, int, int]):
     """
     Genera un archivo .evtx binario sintético y correlacionado con los eventos del sistema
     (como EventID 4624, 7045, 4672, 1102) para su análisis con evtx_dump o python-evtx.
     """
     artMan = artifact.ArtifactManager()
-    ruta_archivo = artMan.create_file(nombre_evtx, directorio)
+    archivo_evtx = artMan.create_file(nombre, destino)
 
-    evtx_data = create_evtx(data, event_count, chunk_count)
+    evtx_chunk, event_count, chunk_count = data
 
-    with ruta_archivo.open("wb") as f:
+    evtx_data = create_evtx(evtx_chunk, event_count, chunk_count)
+
+    with archivo_evtx.open("wb") as f:
         f.write(evtx_data)
 
     sha256_evtx = hashlib.sha256(evtx_data).hexdigest()
 
-    module_logger.info(f"Objeto evtx: {nombre_evtx} creado. SHA256: {sha256_evtx}")
-    return sha256_evtx
-    
+    module_logger.info(f"Objeto evtx: {archivo_evtx} creado. SHA256: {sha256_evtx}")

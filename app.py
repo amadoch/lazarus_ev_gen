@@ -29,8 +29,8 @@ def main():
     artMan.create_directory(LAB_ROUTE)
     
     # 2. Generar registros de eventos sinteticos
-    contenido, event_count, chunk_count = evtx.leer_evento_xml("test.xml", "./inputs")
-    evtx.generar_archivo_evtx("Security.evtx", LAB_ROUTE, contenido, event_count, chunk_count)
+    contenido = evtx.leer_evento_xml("test.xml", "./inputs")
+    evtx.generar_archivo_evtx("Security.evtx", LAB_ROUTE, contenido)
     
     # 3. Generar registros de colmenas sinteticos
     hives.generar_colmena_binaria("SAM", LAB_ROUTE)
