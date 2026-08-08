@@ -1,0 +1,5 @@
+construct==2.10.70
+inflection==0.5.1
+lxml==6.1.1
+pytz==2026.3.post1
+regipy==6.3.0
