@@ -1,0 +1,3 @@
+[submodule "vendors/lib-xml2evtx"]
+	path = vendors/lib-xml2evtx
+	url = https://github.com/amadoch/lib-xml2evtx.git

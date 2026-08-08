@@ -1,5 +1,5 @@
-from pathlib import Path
 import logging
+from pathlib import Path
 
 module_logger = logging.getLogger("lab_lazarus.utils")
 

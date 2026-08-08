@@ -1,11 +1,32 @@
 # lazarus_ev_gen v0.0.1
 
 ---
+
 Generador de evidencia sintetica. Practica de Lazarus
-__Author: Armando bustamante__
+Author: Armando bustamante
+Disclaimer: El uso responsable de esta herramienta es responsabilidad exclusiva del usuario.
+
 ---
 
-Herramienta de laboratorio para generación de registro de eventos y registro de colmenas como evidencia sintetica para estudio forense.
+SCRIPT DE AUTOMATIZACIÓN FORENSE ROBUSTA (PYTHON 3) - MATRIZ FORENSE LAZARUS
+MODIFICACIÓN: Armando Bustamante
+Certificación de Informática Forense - Lazarus Venezuela
+Versión Objetivo: Windows 10 Pro (Compilación 19045 - 22H2)
+
+Descripción:
+Este script genera de manera reproducible colmenas binarias del Registro de Windows
+(SAM, SECURITY, SOFTWARE, SYSTEM, NTUSER.DAT, USRCLASS.DAT) y archivos de registro
+de eventos (.evtx) válidos y correlacionados para simulaciones de laboratorio de peritaje.
+
+Incluye registro de actividad de la aplicación (logger), manejo de errores, validación de rutas,
+y generación aleatoria sintética coherente con la Matriz Forense Lazarus (AmCache, ShimCache,
+USBSTOR, ShellBags, UserAssist, BAM/DAM y canales EVTX).
+
+Requisitos de Entorno:
+
+- Ejecutable en Debian GNU/Linux (Python 3.10+) y Windows.
+- Dependencias: lib-xml2evtx, regipy
+- Puede Emplear estructuras binarias nativas robustas compatibles con herramientas periciales como hivexsh, RegRipper y evtx_dump.
 
 ## Aviso legal y descargo de responsabilidad
 
@@ -23,5 +44,3 @@ El autor y los colaboradores de ForensicSuite no se hacen responsables del uso i
 - Acceder, examinar o extraer información de dispositivos sin autorización del titular.
 - Utilizar la herramienta para ocultar, alterar, destruir o manipular evidencia digital.
 - Cualquier actividad que vulnere la legislación vigente, incluyendo la Ley Especial contra Delitos Informáticos de Venezuela y el Código Orgánico Procesal Penal.
-
-**_El uso responsable de esta herramienta es responsabilidad exclusiva del usuario._**

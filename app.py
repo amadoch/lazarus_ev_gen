@@ -1,26 +1,6 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-=============================================================================
-SCRIPT DE AUTOMATIZACIÓN FORENSE ROBUSTA (PYTHON 3) - MATRIZ FORENSE LAZARUS
-MODIFICACIÓN: Armando Bustamante
-Certificación de Informática Forense - Lazarus Venezuela
-Versión Objetivo: Windows 10 Pro (Compilación 19045 - 22H2)
-=============================================================================
-Descripción:
-Este script genera de manera reproducible colmenas binarias del Registro de Windows 
-(SAM, SECURITY, SOFTWARE, SYSTEM, NTUSER.DAT, USRCLASS.DAT) y archivos de registro 
-de eventos (.evtx) válidos y correlacionados para simulaciones de laboratorio de peritaje.
-Incluye registro de actividad de la aplicación (logger), manejo de errores, validación de rutas,
-y generación aleatoria sintética coherente con la Matriz Forense Lazarus (AmCache, ShimCache,
-USBSTOR, ShellBags, UserAssist, BAM/DAM y canales EVTX).
 
-Requisitos de Entorno:
-- Ejecutable en Debian GNU/Linux (Python 3.10+) y Windows.
-- No requiere dependencias externas pesadas de C, empleando estructuras binarias 
-  nativas robustas compatibles con herramientas periciales como hivexsh, RegRipper y evtx_dump.
-"""
-from simlablazarus import artifact, log, hives, evtx
+from simlablazarus import artifact, evtx, hives, log
 
 LAB_ROUTE = "/tmp/lab_forense_lazarus"
 HIVES = [
