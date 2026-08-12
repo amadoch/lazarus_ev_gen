@@ -32,8 +32,8 @@ def main():
     contenido = evtx.leer_evento_xml("test.xml", "./inputs")
     evtx.generar_archivo_evtx("Security.evtx", LAB_ROUTE, contenido)
     
-    # 3. Generar registros de colmenas sinteticos
-    hives.generar_colmena_binaria("SAM", LAB_ROUTE)
+    # # 3. Generar registros de colmenas sinteticos
+    # hives.generar_colmena_binaria("SAM", LAB_ROUTE)
     
     logger.info(f"Todos los artefactos forenses han sido desplegados en: {LAB_ROUTE}")
     logger.info("Los datos son dinámicos, aleatorios y se sostienen bajo la Matriz Forense Lazarus")

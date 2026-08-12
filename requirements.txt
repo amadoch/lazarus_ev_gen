@@ -1,7 +1,6 @@
 build==1.5.0
 construct==2.10.70
 inflection==0.5.1
-lib-xml2evtx @ file:///home/amadoch/workspace/lazarus_ev_gen/vendors/lib-xml2evtx
 lxml==6.1.1
 packaging==26.3
 pyproject_hooks==1.2.0
